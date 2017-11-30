@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 
 var pg = require("pg"); // This is the postgres database connection module.
-const connectionString = "postgres://my_user:my_pass@localhost:5432/gameData";
+const connectionString = "postgres://my_user:my_pass@127.0.0.1:5432/gameData";
 
 app.set('port', (process.env.PORT || 5000));
 
