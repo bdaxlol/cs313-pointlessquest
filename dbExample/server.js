@@ -42,6 +42,7 @@ function testQuery(request, response) {
 }
 
 function testQueryFromDb(id, callback) {
+	console.log(process.env.DATABASE_URL);
 	console.log("Getting entry from DB with id: " + id);
 
 	var client = new pg.Client(connectionString);
