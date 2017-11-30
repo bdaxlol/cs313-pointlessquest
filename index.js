@@ -1,12 +1,27 @@
 var express = require('express');
 var app = express();
 
-var pg = require("pg"); // This is the postgres database connection module.
-const connectionString = "postgresql://my_user:my_pass@localhost:5432/gameData";
+const { Pool, Client } = require('pg')
+const connectionString = 'postgresql://my_user:my_pass@localhost:5432/gameData'
+
+const pool = new Pool({
+  connectionString: connectionString,
+})
+
+pool.query('SELECT NOW()', (err, res) => {
+  console.log(err, res)
+  pool.end()
+})
 
 const client = new Client({
-	connectionString: connectionString,
-});
+  connectionString: connectionString,
+})
+client.connect()
+
+client.query('SELECT NOW()', (err, res) => {
+  console.log(err, res)
+  client.end()
+})
 
 app.set('port', (process.env.PORT || 5000));
 
