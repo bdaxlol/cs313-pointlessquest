@@ -43,3 +43,7 @@ img{
 #loginBtn{
   margin-left: 300px;
 }
+
+#passwordError{
+  visibility: hidden;
+}

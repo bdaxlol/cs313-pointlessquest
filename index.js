@@ -39,11 +39,22 @@ app.get('/login', function (request, response) {
       					console.log("Password matches, login success");
       				} else {
       					console.log("Password does not match, show error");
+      					document.getElementById("passwordError").style.visibility = 'visible';
       				}
       			} else {
       				console.log("Username doesn't exist, go create user.");
+      				pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+  					client.query("INSERT INTO user_account(username, password, admin) VALUES ('"+username+"', '"+password+"', FALSE)", function(err, result) {
+    				done();
+      				if (err) {
+      					console.error(err); response.send("Error " + err);
+      				} else {
+      					console.log("Created user account.")
+      				}
+  					});
+					});
       			}
-      			response.render('pages/db', {results: result.rows} );
+      			//response.render('pages/db', {results: result.rows} );
       		}
     	});
   	});
