@@ -81,7 +81,7 @@ function parseCharData(request, response) {
 
     console.log("Creating character with desired stats.");
     pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-  		client.query("INSERT INTO player(user_id, name, exp_points, next_lvl, max_hp, hp, strength, defense) VALUES (SELECT id FROM user_account WHERE username='"+username+"', '"+name+"', 0, 20, "+hp+", "+hp+", "+str+", "+def+")", function(err, result) {
+  		client.query("INSERT INTO player(user_id, name, exp_points, next_lvl, max_hp, hp, strength, defense) SELECT u.id, '"+name+"', 0, 20, "+hp+", "+hp+", "+str+", "+def+" FROM user_account u WHERE u.username='"+username+"'", function(err, result) {
     	done();
     	if (err) {
     		console.error(err); response.send("Error " + err);
