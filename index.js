@@ -50,6 +50,8 @@ app.get('/login', function (request, response) {
       					console.error(err); response.send("Error " + err);
       				} else {
       					console.log("Created user account.")
+      					var params = {results: result.rows, username: username}
+      					response.render('pages/charCreate', params );
       				}
   					});
 					});
@@ -69,6 +71,7 @@ function parseCharData(request, response) {
 
 	console.log("Query parameters: " + JSON.stringify(requestUrl.query));
 
+	var username = requestUrl.query.username;
 	var name = requestUrl.query.name;
 	var hp = Number(requestUrl.query.hp);
 	var str = Number(requestUrl.query.str);
@@ -76,7 +79,18 @@ function parseCharData(request, response) {
 
 	var params = {name: name, hp: hp, str: str, def: def};
 
-	response.render('pages/result', params);
+    console.log("Creating character with desired stats.");
+    pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+  		client.query("INSERT INTO player(user_id, name, exp_points, next_lvl, max_hp, hp, strength, defense) VALUES (SELECT id FROM user_account WHERE username='"+username+"', '"+name+"', 0, 20, "+hp+", "+hp+", "+str+", "+def+")", function(err, result) {
+    	done();
+    	if (err) {
+    		console.error(err); response.send("Error " + err);
+    	} else {
+    		console.log("Created player")
+    		response.render('pages/result', params );
+    	}
+  		});
+	});
 }
 
 function userExists(username, results) {
