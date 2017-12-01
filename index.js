@@ -21,16 +21,32 @@ app.get('/createChar', function(request, response) {
 	parseCharData(request, response);
 });
 
-app.get('/db', function (request, response) {
-  pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-    client.query('SELECT * FROM user_account', function(err, result) {
-      done();
-      if (err)
-       { console.error(err); response.send("Error " + err); }
-      else
-       { response.render('pages/db', {results: result.rows} ); }
-    });
-  });
+app.get('/login', function (request, response) {
+	var requestUrl = url.parse(request.url, true);
+	console.log("Query parameters: " + JSON.stringify(requestUrl.query));
+	var username = requestUrl.query.username;
+	var password = requestUrl.query.pass;
+  	pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+    	client.query("SELECT username, password FROM user_account WHERE username='"+username+"'", function(err, result) {
+      		done();
+      		if (err) {
+      			console.error(err); response.send("Error " + err);
+      		} else {
+      			console.log("Checking if user " + username + " exists.");
+      			if (userExists(username, result.rows)) {
+      				console.log("Username exists. Checking password.");
+      				if (passCheck(username, password, result.rows)) {
+      					console.log("Password matches, login success");
+      				} else {
+      					console.log("Password does not match, show error");
+      				}
+      			} else {
+      				console.log("Username doesn't exist, go create user.");
+      			}
+      			response.render('pages/db', {results: result.rows} );
+      		}
+    	});
+  	});
 });
 
 app.listen(app.get('port'), function() {
@@ -50,4 +66,26 @@ function parseCharData(request, response) {
 	var params = {name: name, hp: hp, str: str, def: def};
 
 	response.render('pages/result', params);
+}
+
+function userExists(username, results) {
+	var found = false;
+	results.forEach(function(r) { 
+        if (username === r.username) {
+        	found = true
+        }
+     });
+	return found;
+}
+
+function passCheck(username, password, results) {
+	var found = false;
+	results.forEach(function(r) { 
+        if (username === r.username) {
+        	if (password === r.password) {
+        		found = true;
+        	}
+        }
+     });
+	return found;
 }
