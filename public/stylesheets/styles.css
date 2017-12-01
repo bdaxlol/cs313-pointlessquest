@@ -1,0 +1,45 @@
+body{
+  background-color: black;
+  color: white;
+  padding: 130px;
+}
+
+h1{
+  padding-top: 50px;
+  text-align: center;
+}
+
+img{
+  padding-top: 50px;
+}
+
+.container{
+  border:1px;
+}
+
+.inline{
+  display: inline-block;
+  margin-right: 10px;
+}
+
+#hp, #str, #def{
+  background-color: black;
+  color: white;
+}
+
+#nextHp, #nextStr, #nextDef{
+  color: green;
+  width: 30px;
+}
+
+#statsRemaining{
+  margin-left: 150px;
+}
+
+#submitBtn{
+  visibility: hidden;
+}
+
+#loginBtn{
+  margin-left: 300px;
+}

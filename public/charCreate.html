@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Character Creation</title>
+	<link rel="stylesheet" href="stylesheets/styles.css">
+	<script src="char.js"></script>
+</head>
+<body>
+	<h1>Welcome to Pointless Quest!</h1>
+	<p>It appears this is your first time here. Let's start by making a character!</p>
+	<form action="/createChar" method="get">
+		<div class="container">
+			<div class="inline">
+				<div class="container">
+					<p class="inline">Character Name:</p><input type="text" name="name" class="inline">
+				</div>
+				<p>Stat Point Allocation:</p>
+				<div class="container">
+					<p class="inline">HP:  <input type="text" name="hp" id="hp" class="inline" size=2 value=20 readonly> &rarr; <div id="nexthp" class="inline">25</div><button type="button" onclick="increaseStat('hp', 5)" class="inline" id="hpBtn">&uarr;</button></p>
+				</div>
+				<div class="container">
+					<p class="inline">STR: <input type="text" name="str" id="str" class="inline" size=2 value=5 readonly> &rarr; <div id="nextstr" class="inline">6</div><button type="button" onclick="increaseStat('str', 1)" class="inline" id="strBtn">&uarr;</button></p>
+				</div>
+				<div class="container">
+					<p class="inline">DEF: <input type="text" name="def" id="def" class="inline" size=2 value=5 readonly> &rarr; <div id="nextdef" class="inline">6</div><button type="button" onclick="increaseStat('def', 1)" class="inline" id="defBtn">&uarr;</button></p>
+				</div>
+				<p>Status points remaining: <div id="statsRemaining">10</div></p>
+				<br><br>
+				<input type="submit" value="Finished" id="submitBtn">
+			</div>
+			<img src="char.png" alt="character sprite" class="inline" style="float:right;width:170;height:220;">
+		</div>
+	</form>
+</body>
+</html>
