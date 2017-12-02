@@ -28,17 +28,17 @@
 			<td><input type="text" name="playerEXP" id="playerEXP" size=15 value=0 readonly></td>
 		</tr>
 	</table>
-	<% results.forEach(function(r) { %>
-    <% console.log(r.name); %>
+	
     <script>
-    	var getName = <%= r.name %>;
-    	var getHp = <%= r.hp %>;
-    	var getStr = <%= r.str %>;
-    	var getDef = <%= r.def %>;
-    	var getExp = <%= r.exp %>;
+    	var getName = <%= results.rows[0].name %>;
+    	var getHp = <%= results.rows[0].hp %>;
+    	var getStr = <%= results.rows[0].str %>;
+    	var getDef = <%= results.rows[0].def %>;
+    	var getExp = <%= results.rows[0].exp %>;
+    	console.log("Assigned stuff: " + getName);
     	initializeValues(getName, getHp, getStr, getDef, getExp);
     </script>
-    <% }); %>
+   
 	<br>
 	<div id="scrollDiv">
 		<table id="scrollTable">
