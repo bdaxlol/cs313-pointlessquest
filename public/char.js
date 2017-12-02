@@ -32,7 +32,7 @@ function initializeValues(name, hp, str, def, exp) {
 function updateVals() {
 	document.getElementById("playerName").value = playerName;
 	document.getElementById("playerLevel").value = playerLevel;
-	document.getElementById("playerHP").value = playerHP + " / " playerMaxHP;
+	document.getElementById("playerHP").value = playerHP;
 	document.getElementById("playerSTR").value = playerSTR;
 	document.getElementById("playerDEF").value = playerDEF;
 	document.getElementById("playerEXP").value = playerEXP;
