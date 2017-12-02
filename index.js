@@ -54,7 +54,7 @@ app.get('/login', function (request, response) {
       				console.log("Username exists. Checking password.");
       				if (passCheck(username, password, result.rows)) {
       					console.log("Password matches, login success");
-      					fetchPlayerData(username);
+      					fetchPlayerData(username, request, response);
       				} else {
       					console.log("Password does not match, show error");
       				}
@@ -104,13 +104,13 @@ function parseCharData(request, response) {
     		console.error(err); response.send("Error " + err);
     	} else {
     		console.log("Created player")
-    		fetchPlayerData(username);
+    		fetchPlayerData(username, request, response);
     	}
   		});
 	});
 }
 
-function fetchPlayerData(username) {
+function fetchPlayerData(username, request, response) {
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
       client.query("SELECT p.name, p.exp_points, p.max_hp, p.strength, p.defense FROM player p INNER JOIN user_account ua ON p.user_id = ua.id WHERE ua.username='"+username+"'", function(err, result) {
       done();
