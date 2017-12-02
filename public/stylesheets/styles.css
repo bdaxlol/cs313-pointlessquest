@@ -47,3 +47,8 @@ img{
 #passwordError{
   visibility: hidden;
 }
+
+#slimeButton{
+  width: 200px;
+  height: 200px;
+}
