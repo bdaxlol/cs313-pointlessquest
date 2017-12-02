@@ -9,9 +9,17 @@
 
     <% results.forEach(function(r) { %>
     <% console.log(r.name); %>
-    <% initializeValues(r.name, r.hp, r.str, r.def, r.exp); %>
+    <script>
+    	var getName = <%= r.name %>;
+    	var getHp = <%= r.hp %>;
+    	var getStr = <%= r.str %>;
+    	var getDef = <%= r.def %>;
+    	var getExp = <%= r.exp %>;
+    	initializeValues(getName, getHp, getStr, getDef, getExp);
+    </script>
     <% }); %>
-    <body>
+
+<body>
 	<br><br>
 	
 	<!-- -->
