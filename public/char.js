@@ -19,7 +19,7 @@ function initializeValues(name, hp, str, def, exp) {
 	playerSTR = str;
 	playerDEF = def;
 	playerEXP = exp;
-	playerLevel = Math.round(Math.sqrt(exp/20));
+	playerLevel = Math.round(Math.sqrt(exp/20)) + 1;
 
 	document.getElementById("playerName").value = playerName;
 	document.getElementById("playerLevel").value = playerLevel;
@@ -95,7 +95,7 @@ function attackEnemy(enemy) {
 		addLine("You gain " + enemy.exp + " experience points.");
 		playerEXP += enemy.exp;
 
-		var checkLevel = Math.round(Math.sqrt(playerEXP/20));
+		var checkLevel = Math.round(Math.sqrt(playerEXP/20)) + 1;
 		if (checkLevel > playerLevel) {
 			//you gained a level
 			playerLevel = checkLevel;
