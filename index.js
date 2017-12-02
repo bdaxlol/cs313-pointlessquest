@@ -34,8 +34,6 @@ app.get('/loadData', function (request, response) {
       		} else {
       			response.json({data: result.rows});
       		}
-      			//response.render('pages/db', {results: result.rows} );
-      		}
     	});
   	});
 });
