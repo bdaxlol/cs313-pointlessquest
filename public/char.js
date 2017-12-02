@@ -69,6 +69,24 @@ function increaseStat(id, val) {
 }
 
 function attackEnemy(enemy) {
+	//get enemy object out of name in string
+	var target;
+	if (enemy == 'slime') {
+		target = slime;
+	} else if (enemy == 'rabbit') {
+		target = rabbit;
+	} else if (enemy == 'wolf') {
+		target = wolf;
+	} else if (enemy == 'bear') {
+		target = bear;
+	} else if (enemy == 'goblin') {
+		target = goblin;
+	} else if (enemy == 'orc') {
+		target = orc;
+	} else {
+		console.err("Tried to attack an enemy that doesn't exist: " + enemy);
+	}
+
 	//deal dmg
 	var dmgGiven = Math.max(playerSTR - enemy.def, 0);
 	enemy.hp -= dmgGiven;
