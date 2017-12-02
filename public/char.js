@@ -88,30 +88,30 @@ function attackEnemy(enemy) {
 	}
 
 	//deal dmg
-	var dmgGiven = Math.max(playerSTR - enemy.def, 0);
-	enemy.hp -= dmgGiven;
-	addLine("You attack " + enemy.name + " for " + dmgGiven + " damage.");
+	var dmgGiven = Math.max(playerSTR - target.def, 0);
+	target.hp -= dmgGiven;
+	addLine("You attack " + target.name + " for " + dmgGiven + " damage.");
 
 	//see if dead
-	if (enemy.hp > 0) {
-		var dmgReceived = Math.max(enemy.str - playerDEF, 0);
+	if (target.hp > 0) {
+		var dmgReceived = Math.max(target.str - playerDEF, 0);
 		playerHP -= dmgReceived;
-		addLine(enemy.name + " attacks you for " + dmgReceived + " damage.");
+		addLine(target.name + " attacks you for " + dmgReceived + " damage.");
 
 		//see if counter-attack killed you
 		if (playerHP > 0) {
 			//You lived. Do nothing?
 		} else {
 			//You died. Show msg and reset stats.
-			addLine("You died! Next time, maybe dont attack the " + enemy.name + ".");
+			addLine("You died! Next time, maybe dont attack the " + target.name + ".");
 			playerHP = playerMaxHP;
-			enemy.hp += dmgGiven;
+			target.hp += dmgGiven;
 		}
 	} else {
 		//enemy died, grant exp, respawn monster
-		addLine(enemy.name + " died.");
-		addLine("You gain " + enemy.exp + " experience points.");
-		playerEXP += enemy.exp;
+		addLine(target.name + " died.");
+		addLine("You gain " + target.exp + " experience points.");
+		playerEXP += target.exp;
 
 		var checkLevel = Math.round(Math.sqrt(playerEXP/20)) + 1;
 		if (checkLevel > playerLevel) {
