@@ -32,7 +32,7 @@ app.get('/loadData', function (request, response) {
       		if (err) {
       			console.error(err); response.send("Error " + err);
       		} else {
-      			response.json({data: result.rows})
+      			response.json({data: result.rows});
       		}
       			//response.render('pages/db', {results: result.rows} );
       		}
