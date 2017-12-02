@@ -8,6 +8,7 @@ const connectionString = "postgres://my_user:my_pass@localhost:5432/gameData";
 app.set('port', (process.env.PORT || 5000));
 
 app.use(express.static(__dirname + '/public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // views is directory for all template files
 app.set('views', __dirname + '/views');
