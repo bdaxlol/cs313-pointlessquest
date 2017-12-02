@@ -5,8 +5,19 @@
 	<link rel="stylesheet" href="stylesheets/styles.css">
 	<script src="char.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript">
+	function getStats() {
+		var getName = <%= results[0].name %>;
+    	var getHp = <%= results[0].hp %>;
+    	var getStr = <%= results[0].str %>;
+    	var getDef = <%= results[0].def %>;
+    	var getExp = <%= results[0].exp %>;
+    	console.log("Assigned stuff: " + getName);
+    	initializeValues(getName, getHp, getStr, getDef, getExp);
+	}
+	</script>
 </head>
-<body>
+<body onload="getStats()">
 	<br><br>
 	
 	<!-- -->
@@ -28,18 +39,6 @@
 			<td><input type="text" name="playerEXP" id="playerEXP" size=15 value=0 readonly></td>
 		</tr>
 	</table>
-	
-    <script>
-    	window.onload = function() {
-    	var getName = <%= results[0].name %>;
-    	var getHp = <%= results[0].hp %>;
-    	var getStr = <%= results[0].str %>;
-    	var getDef = <%= results[0].def %>;
-    	var getExp = <%= results[0].exp %>;
-    	console.log("Assigned stuff: " + getName);
-    	initializeValues(getName, getHp, getStr, getDef, getExp);
-    };
-    </script>
    
 	<br>
 	<div id="scrollDiv">
