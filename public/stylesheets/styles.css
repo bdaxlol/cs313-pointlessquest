@@ -56,6 +56,6 @@ h1{
 }
 
 #saveBtn{
-  text-align: right;
-  padding-bottom: 150px;
+  margin-left: 300px;
+  margin-bottom: 150px;
 }

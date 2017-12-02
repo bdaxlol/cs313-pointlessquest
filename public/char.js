@@ -12,6 +12,7 @@ var wolf = {name:"Wolf", hp:150, maxhp:100, exp:60, str:11, def:4};
 var bear = {name:"Bear", hp:250, maxhp:200, exp:150, str:12, def:7};
 var goblin = {name:"Goblin", hp:100, maxhp:100, exp:210, str:18, def:7};
 var orc = {name:"Orc", hp:400, maxhp:250, exp:350, str:20, def:12};
+var dragon = {name: "Dragon", hp:1000, maxhp:1000, exp:0, str:30, def:22};
 
 function initializeValues(name, hp, str, def, exp) {
 	playerName = name;
@@ -34,6 +35,7 @@ function initializeValues(name, hp, str, def, exp) {
 	document.getElementById("bearHP").value = bear.hp;
 	document.getElementById("goblinHP").value = goblin.hp;
 	document.getElementById("orcHP").value = orc.hp;
+	document.getElementById("dragonHP").value = dragon.hp;
 }
 
 function updateVals() {
@@ -50,6 +52,7 @@ function updateVals() {
 	document.getElementById("bearHP").value = bear.hp;
 	document.getElementById("goblinHP").value = goblin.hp;
 	document.getElementById("orcHP").value = orc.hp;
+	document.getElementById("dragonHP").value = dragon.hp;
 }
 
 function increaseStat(id, val) {
@@ -78,6 +81,8 @@ function increaseStat(id, val) {
 function attackEnemy(enemy) {
 	//get enemy object out of name in string
 	var target;
+	var isDragon = false;
+	var isOrc = false;
 	if (enemy == 'slime') {
 		target = slime;
 	} else if (enemy == 'rabbit') {
@@ -90,6 +95,10 @@ function attackEnemy(enemy) {
 		target = goblin;
 	} else if (enemy == 'orc') {
 		target = orc;
+		isOrc = true;
+	} else if (enemy == 'dragon') {
+		target = dragon;
+		isDragon = true;
 	} else {
 		console.err("Tried to attack an enemy that doesn't exist: " + enemy);
 	}
@@ -104,6 +113,15 @@ function attackEnemy(enemy) {
 		var dmgReceived = Math.max(target.str - playerDEF, 0);
 		playerHP -= dmgReceived;
 		addLine(target.name + " attacks you for " + dmgReceived + " damage.");
+
+		if (isOrc && dmgReceived > 1) {
+			confirm("The strongest monster does no damage do you. You seek out a heartier challenge.");
+			addLine("You hear reports of a dragon appearing to the south.");
+			addLine("This beast threatens your peaceful life of slaughtering the forest creatures...");
+			addLine("Your quest cannot be truly over until this enemy is vanquished.");
+			//Make dragon button visible.
+			document.getElementById('dragon_row').style.display = 'table-row';
+		}
 
 		//see if counter-attack killed you
 		if (playerHP > 0) {
@@ -135,7 +153,14 @@ function attackEnemy(enemy) {
     		} else {
         		confirm("I do not recognize that input. You get nothing.");
     		}
-    		addLine("Level up! You are now level " + playerLevel)
+    		addLine("Level up! You are now level " + playerLevel);
+    		if (isDragon) {
+    			//You've defeated the boss.
+    			confirm('You have defeated the great dragon and all the people are super stoked about it.');
+    			addLine('Congrats on that.');
+    			addLine('Good job.');
+    			addLine('Maybe go do something worthwhile now.');
+    		}
 		}
 		playerHP = playerMaxHP;
 	}
