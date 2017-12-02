@@ -6,9 +6,14 @@
 	<script src="char.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
-<body onload="initializeValues(<%= results.rows[0].name %>, <%= results.rows[0].hp %>, <%= results.rows[0].str %>, <%= results.rows[0].def %>, <%= results.rows[0].exp %>)">
+
+    <% results.forEach(function(r) { %>
+        <body onload="initializeValues(<%= r.name %>, <%= r.hp %>, <%= r.str %>, <%= r.def %>, <%= r.exp %>)">
+    <% }); %>
+
+<!--<body onload="initializeValues(<%= results.rows[0].name %>, <%= results.rows[0].hp %>, <%= results.rows[0].str %>, <%= results.rows[0].def %>, <%= results.rows[0].exp %>)">-->
 	<br><br>
-	<% initializeValues(results.rows[0].name, results.rows[0].hp, results.rows[0].str, results.rows[0].def, results.rows[0].exp); %>
+	
 	<!-- -->
 	<table>
 		<tr>
