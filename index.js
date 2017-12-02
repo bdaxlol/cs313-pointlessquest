@@ -110,6 +110,20 @@ function parseCharData(request, response) {
 	});
 }
 
+function fetchPlayerData(username) {
+  pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+      client.query("SELECT p.name, p.exp_points, p.max_hp, p.strength, p.defense FROM player p INNER JOIN user_account ua ON p.user_id = ua.id WHERE ua.username='"+username+"'", function(err, result) {
+      done();
+      if (err) {
+        console.error(err); response.send("Error " + err);
+      } else {
+        console.log("Got player data. Moving to game page.")
+        response.render('pages/game', {results: result.rows} );
+      }
+      });
+  });
+}
+
 function userExists(username, results) {
 	var found = false;
 	results.forEach(function(r) { 

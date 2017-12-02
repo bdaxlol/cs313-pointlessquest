@@ -5,23 +5,10 @@
 	<link rel="stylesheet" href="stylesheets/styles.css">
 	<script src="char.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script type="text/javascript">
-		function getData() {
-			$.get(
-				"/loadData",
-				{username : <%= username %>},
-				function(data) {
-					data.forEach(function(r) {
-						console.log(r);
-					});
-				}
-			);
-		}
-	</script>
 </head>
-<body onload="getData()">
+<body>
 	<br><br>
-
+	<% initializeValues(results.rows[0].name, results.rows[0].hp, results.rows[0].str, results.rows[0].def, results.rows[0].exp); %>
 	<!-- -->
 	<table>
 		<tr>
@@ -30,26 +17,39 @@
 			<th>HP</th>
 			<th>STR</th>
 			<th>DEF</th>
-			<th>Exp</th>
+			<th>EXP</th>
 		</tr>
-		
+		<tr>
+			<td><input type="text" name="playerName" id="playerName" size=15 value="None" readonly></td>
+			<td><input type="text" name="playerLevel" id="playerLevel" size=15 value=0 readonly></td>
+			<td><input type="text" name="playerHP" id="playerHP" size=15 value=0 readonly></td>
+			<td><input type="text" name="playerSTR" id="playerSTR" size=15 value=0 readonly></td>
+			<td><input type="text" name="playerDEF" id="playerDEF" size=15 value=0 readonly></td>
+			<td><input type="text" name="playerEXP" id="playerEXP" size=15 value=0 readonly></td>
+		</tr>
 	</table>
-
-	<form action="/login" method="get">
-		<div class="container" style="text-align: center;">
-			<p class="inline">Username:<input type="text" name="username" id="username" class="inline" size=30></p>
-		</div>
-		<div class="container" style="text-align: center;">
-			<p class="inline">Password:<input type="text" name="pass" id="pass" class="inline" size=30></p>
-			<p><div id="passwordError" style="color: red">Incorrect password. Try again or use a different username</div></p>
-			<p>Note: Do not use a real password that you care about. All passwords are stored as plain text.</p>
-		</div>
-			<br><br>
-			<div style="text-align: center;">
-				<input type="submit" value="Login" id="loginBtn">
-			</div>
-		</div>
-		<img src="char.png" alt="character sprite" class="inline" style="float:right;width:170;height:220;">
-	</form>
+	<br>
+	<div id="scrollDiv">
+		<table id="scrollTable">
+			<tr>
+				<td>Welcome!</td>
+			</tr>
+		</table>
+	</div>
+	<br>
+	<div id="enemyDiv">
+		<table id="enemyTable">
+			<tr>
+				<td><input type="button" onclick="attackEnemy('slime')"><input type="text" name="slimeHP" id="slimeHP" size=2 value=0 readonly></td>
+				<td>Rabbit goes here.</td>
+				<td>Wolf goes here.</td>
+			</tr>
+			<tr>
+				<td>Bear goes here.</td>
+				<td>Goblin goes here.</td>
+				<td>Orc goes here.</td>
+			</tr>
+		</table>
+	</div>
 </body>
 </html>
