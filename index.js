@@ -56,6 +56,7 @@ app.get('/login', function (request, response) {
       				console.log("Username exists. Checking password.");
       				if (passCheck(username, password, result.rows)) {
       					console.log("Password matches, login success");
+      					response.render('pages/game', {username: username});
       				} else {
       					console.log("Password does not match, show error");
       				}
@@ -68,7 +69,7 @@ app.get('/login', function (request, response) {
       					console.error(err); response.send("Error " + err);
       				} else {
       					console.log("Created user account.")
-      					var params = {results: result.rows, username: username}
+      					var params = {results: result.rows, username: username};
       					response.render('pages/charCreate', params );
       				}
   					});
@@ -95,7 +96,7 @@ function parseCharData(request, response) {
 	var str = Number(requestUrl.query.str);
 	var def = Number(requestUrl.query.def);
 
-	var params = {name: name, hp: hp, str: str, def: def};
+	var params = {username: username};
 
     console.log("Creating character with desired stats.");
     pg.connect(process.env.DATABASE_URL, function(err, client, done) {
@@ -105,7 +106,7 @@ function parseCharData(request, response) {
     		console.error(err); response.send("Error " + err);
     	} else {
     		console.log("Created player")
-    		response.render('pages/result', params );
+    		response.render('pages/game', params );
     	}
   		});
 	});
