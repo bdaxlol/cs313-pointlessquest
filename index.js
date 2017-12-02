@@ -54,7 +54,7 @@ app.get('/login', function (request, response) {
       				console.log("Username exists. Checking password.");
       				if (passCheck(username, password, result.rows)) {
       					console.log("Password matches, login success");
-      					response.render('pages/game', {username: username});
+      					fetchPlayerData(username);
       				} else {
       					console.log("Password does not match, show error");
       				}
@@ -104,7 +104,7 @@ function parseCharData(request, response) {
     		console.error(err); response.send("Error " + err);
     	} else {
     		console.log("Created player")
-    		response.render('pages/game', params );
+    		fetchPlayerData(username);
     	}
   		});
 	});
