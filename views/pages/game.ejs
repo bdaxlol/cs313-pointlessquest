@@ -30,6 +30,7 @@
 	</table>
 	
     <script>
+    	window.onload = function() {
     	var getName = <%= results[0].name %>;
     	var getHp = <%= results[0].hp %>;
     	var getStr = <%= results[0].str %>;
@@ -37,6 +38,7 @@
     	var getExp = <%= results[0].exp %>;
     	console.log("Assigned stuff: " + getName);
     	initializeValues(getName, getHp, getStr, getDef, getExp);
+    };
     </script>
    
 	<br>
