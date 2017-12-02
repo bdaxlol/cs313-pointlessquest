@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var url = require('url');
+var path = require('path');
 
 var pg = require("pg"); // This is the postgres database connection module.
 const connectionString = "postgres://my_user:my_pass@localhost:5432/gameData";
