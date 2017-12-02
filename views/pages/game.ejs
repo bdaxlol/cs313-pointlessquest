@@ -19,7 +19,8 @@
 <body onload="getStats()">
 	<br><br>
 	
-	<!-- -->
+	<!-- Wrap all of this in a form so I can save with a GET request-->
+	<form action="/saveGame" method="get">
 	<table>
 		<tr>
 			<th>Name</th>
@@ -49,7 +50,7 @@
 	</div>
 	<br>
 	<div id="enemyDiv">
-		<table id="enemyTable">
+		<table id="enemyTable" class="inline">
 			<tr>
 				<td><button onclick="attackEnemy('slime')" id="slimeButton"><img src="slime.gif" height="200" width="200"></button><input type="text" name="slimeHP" id="slimeHP" size=2 value=0 readonly></td>
 				<td><button onclick="attackEnemy('rabbit')" id="rabbitButton"><img src="rabbit.jpg" height="200" width="200"></button><input type="text" name="rabbitHP" id="rabbitHP" size=2 value=0 readonly></td>
@@ -62,5 +63,7 @@
 			</tr>
 		</table>
 	</div>
+	<input type="submit" value="Save & Quit" id="saveBtn" class="inline">
+	</form>
 </body>
 </html>
