@@ -6,19 +6,6 @@
 	<script src="char.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
-
-    <% results.forEach(function(r) { %>
-    <% console.log(r.name); %>
-    <script>
-    	var getName = <%= r.name %>;
-    	var getHp = <%= r.hp %>;
-    	var getStr = <%= r.str %>;
-    	var getDef = <%= r.def %>;
-    	var getExp = <%= r.exp %>;
-    	initializeValues(getName, getHp, getStr, getDef, getExp);
-    </script>
-    <% }); %>
-
 <body>
 	<br><br>
 	
@@ -41,6 +28,17 @@
 			<td><input type="text" name="playerEXP" id="playerEXP" size=15 value=0 readonly></td>
 		</tr>
 	</table>
+	<% results.forEach(function(r) { %>
+    <% console.log(r.name); %>
+    <script>
+    	var getName = <%= r.name %>;
+    	var getHp = <%= r.hp %>;
+    	var getStr = <%= r.str %>;
+    	var getDef = <%= r.def %>;
+    	var getExp = <%= r.exp %>;
+    	initializeValues(getName, getHp, getStr, getDef, getExp);
+    </script>
+    <% }); %>
 	<br>
 	<div id="scrollDiv">
 		<table id="scrollTable">
