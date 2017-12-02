@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pointless Quest</title>
+	<link rel="stylesheet" href="stylesheets/styles.css">
+	<script src="char.js"></script>
+</head>
+<body>
+	<br><br>
+
+	<table>
+		<tr>
+			<th>Name</th>
+			<th>Level</th>
+			<th>HP</th>
+			<th>STR</th>
+			<th>DEF</th>
+			<th>Exp</th>
+		</tr>
+
+	<form action="/login" method="get">
+		<div class="container" style="text-align: center;">
+			<p class="inline">Username:<input type="text" name="username" id="username" class="inline" size=30></p>
+		</div>
+		<div class="container" style="text-align: center;">
+			<p class="inline">Password:<input type="text" name="pass" id="pass" class="inline" size=30></p>
+			<p><div id="passwordError" style="color: red">Incorrect password. Try again or use a different username</div></p>
+			<p>Note: Do not use a real password that you care about. All passwords are stored as plain text.</p>
+		</div>
+			<br><br>
+			<div style="text-align: center;">
+				<input type="submit" value="Login" id="loginBtn">
+			</div>
+		</div>
+		<img src="char.png" alt="character sprite" class="inline" style="float:right;width:170;height:220;">
+	</form>
+</body>
+</html>

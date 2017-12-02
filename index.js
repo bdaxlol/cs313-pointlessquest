@@ -21,6 +21,25 @@ app.get('/createChar', function(request, response) {
 	parseCharData(request, response);
 });
 
+app.get('/loadData', function (request, response) {
+	var requestUrl = url.parse(request.url, true);
+	console.log("Query parameters: " + JSON.stringify(requestUrl.query));
+	var username = requestUrl.query.username;
+	//var password = requestUrl.query.pass;
+  	pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+    	client.query("SELECT username, password FROM user_account WHERE username='"+username+"'", function(err, result) {
+      		done();
+      		if (err) {
+      			console.error(err); response.send("Error " + err);
+      		} else {
+      			response.json({data: result.rows})
+      		}
+      			//response.render('pages/db', {results: result.rows} );
+      		}
+    	});
+  	});
+});
+
 app.get('/login', function (request, response) {
 	var requestUrl = url.parse(request.url, true);
 	console.log("Query parameters: " + JSON.stringify(requestUrl.query));
@@ -39,7 +58,6 @@ app.get('/login', function (request, response) {
       					console.log("Password matches, login success");
       				} else {
       					console.log("Password does not match, show error");
-      					document.getElementById("passwordError").style.visibility = 'visible';
       				}
       			} else {
       				console.log("Username doesn't exist, go create user.");
