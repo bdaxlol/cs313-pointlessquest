@@ -6,7 +6,7 @@
 	<script src="char.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
-<body>
+<body onload="initializeValues(<%= results.rows[0].name %>, <%= results.rows[0].hp %>, <%= results.rows[0].str %>, <%= results.rows[0].def %>, <%= results.rows[0].exp %>)">
 	<br><br>
 	<% initializeValues(results.rows[0].name, results.rows[0].hp, results.rows[0].str, results.rows[0].def, results.rows[0].exp); %>
 	<!-- -->
