@@ -6,12 +6,12 @@ var playerSTR = 0;
 var playerDEF = 0;
 var playerEXP = 0;
 
-var slime = {name:"Slime", hp:50, maxhp:50, exp:5, str:5, def:5};
-var rabbit = {name:"Rabbit", hp:70, maxhp:70, exp:8, str:6, def:8};
-var wolf = {name:"Wolf", hp:150, maxhp:150, exp:18, str:15, def:8};
-var bear = {name:"Bear", hp:250, maxhp:250, exp:30, str:19, def:15};
-var goblin = {name:"Goblin", hp:100, maxhp:100, exp:35, str:25, def:18};
-var orc = {name:"Orc", hp:400, maxhp:400, exp:65, str:30, def:25};
+var slime = {name:"Slime", hp:50, maxhp:50, exp:5, str:5, def:2};
+var rabbit = {name:"Rabbit", hp:70, maxhp:70, exp:8, str:6, def:4};
+var wolf = {name:"Wolf", hp:150, maxhp:150, exp:18, str:15, def:4};
+var bear = {name:"Bear", hp:250, maxhp:250, exp:30, str:19, def:7};
+var goblin = {name:"Goblin", hp:100, maxhp:100, exp:35, str:25, def:9};
+var orc = {name:"Orc", hp:400, maxhp:400, exp:65, str:30, def:12};
 
 function initializeValues(name, hp, str, def, exp) {
 	playerName = name;
