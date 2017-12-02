@@ -44,7 +44,12 @@ h1{
   visibility: hidden;
 }
 
-#slimeButton{
-  width: 200px;
-  height: 200px;
+#scrollTable {
+  background-color:black;
+    color:white;
+    width:100%;
+}
+#scrollDiv {
+  height:200px;
+    overflow:scroll;
 }

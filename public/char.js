@@ -6,12 +6,12 @@ var playerSTR = 0;
 var playerDEF = 0;
 var playerEXP = 0;
 
-var slime = {name:"Slime", hp:50, exp:5, str:5, def:5};
-var rabbit = {name:"Rabbit", hp:70, exp:8, str:6, def:8};
-var wolf = {name:"Wolf", hp:150, exp:18, str:15, def:8};
-var bear = {name:"Bear", hp:250, exp:30, str:19, def:15};
-var goblin = {name:"Goblin", hp:100, exp:35, str:25, def:18};
-var orc = {name:"Orc", hp:400, exp:65, str:30, def:25};
+var slime = {name:"Slime", hp:50, maxhp:50, exp:5, str:5, def:5};
+var rabbit = {name:"Rabbit", hp:70, maxhp:70, exp:8, str:6, def:8};
+var wolf = {name:"Wolf", hp:150, maxhp:150, exp:18, str:15, def:8};
+var bear = {name:"Bear", hp:250, maxhp:250, exp:30, str:19, def:15};
+var goblin = {name:"Goblin", hp:100, maxhp:100, exp:35, str:25, def:18};
+var orc = {name:"Orc", hp:400, maxhp:400, exp:65, str:30, def:25};
 
 function initializeValues(name, hp, str, def, exp) {
 	playerName = name;
@@ -27,6 +27,13 @@ function initializeValues(name, hp, str, def, exp) {
 	document.getElementById("playerSTR").value = playerSTR;
 	document.getElementById("playerDEF").value = playerDEF;
 	document.getElementById("playerEXP").value = playerEXP;
+
+	document.getElementById("slimeHP").value = slime.hp;
+	document.getElementById("rabbitHP").value = rabbit.hp;
+	document.getElementById("wolfHP").value = wolf.hp;
+	document.getElementById("bearHP").value = bear.hp;
+	document.getElementById("goblinHP").value = goblin.hp;
+	document.getElementById("orcHP").value = orc.hp;
 }
 
 function updateVals() {
@@ -105,13 +112,14 @@ function attackEnemy(enemy) {
 			//You died. Show msg and reset stats.
 			addLine("You died! Next time, maybe dont attack the " + target.name + ".");
 			playerHP = playerMaxHP;
-			target.hp += dmgGiven;
+			target.hp = target.maxhp;
 		}
 	} else {
 		//enemy died, grant exp, respawn monster
 		addLine(target.name + " died.");
 		addLine("You gain " + target.exp + " experience points.");
 		playerEXP += target.exp;
+		target.hp = target.maxhp;
 
 		var checkLevel = Math.round(Math.sqrt(playerEXP/20)) + 1;
 		if (checkLevel > playerLevel) {
