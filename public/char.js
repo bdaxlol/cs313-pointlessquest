@@ -11,8 +11,9 @@ var rabbit = {name:"Rabbit", hp:70, maxhp:70, exp:25, str:6, def:3};
 var wolf = {name:"Wolf", hp:150, maxhp:100, exp:60, str:11, def:4};
 var bear = {name:"Bear", hp:250, maxhp:200, exp:150, str:12, def:7};
 var goblin = {name:"Goblin", hp:100, maxhp:100, exp:210, str:18, def:7};
-var orc = {name:"Orc", hp:400, maxhp:250, exp:350, str:20, def:12};
+var orc = {name:"Orc", hp:250, maxhp:250, exp:450, str:20, def:12};
 var dragon = {name: "Dragon", hp:1000, maxhp:1000, exp:0, str:30, def:22};
+var dragonSpawned = false;
 
 function initializeValues(name, hp, str, def, exp) {
 	playerName = name;
@@ -114,13 +115,14 @@ function attackEnemy(enemy) {
 		playerHP -= dmgReceived;
 		addLine(target.name + " attacks you for " + dmgReceived + " damage.");
 
-		if (isOrc && dmgReceived > 1) {
+		if (isOrc && dmgReceived < 1 && !dragonSpawned) {
 			confirm("The strongest monster does no damage do you. You seek out a heartier challenge.");
 			addLine("You hear reports of a dragon appearing to the south.");
 			addLine("This beast threatens your peaceful life of slaughtering the forest creatures...");
 			addLine("Your quest cannot be truly over until this enemy is vanquished.");
 			//Make dragon button visible.
 			document.getElementById('dragon_row').style.display = 'table-row';
+			dragonSpawned = true;
 		}
 
 		//see if counter-attack killed you
@@ -154,14 +156,14 @@ function attackEnemy(enemy) {
         		confirm("I do not recognize that input. You get nothing.");
     		}
     		addLine("Level up! You are now level " + playerLevel);
-    		if (isDragon) {
-    			//You've defeated the boss.
-    			confirm('You have defeated the great dragon and all the people are super stoked about it.');
-    			addLine('Congrats on that.');
-    			addLine('Good job.');
-    			addLine('Maybe go do something worthwhile now.');
-    		}
 		}
+		if (isDragon) {
+    		//You've defeated the boss.
+    		confirm('You have defeated the great dragon and all the people are super stoked about it.');
+    		addLine('Congrats on that.');
+    		addLine('Good job.');
+    		addLine('Maybe go do something worthwhile now.');
+    	}
 		playerHP = playerMaxHP;
 	}
 	updateVals();
