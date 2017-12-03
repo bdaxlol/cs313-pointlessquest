@@ -15,7 +15,7 @@ var orc = {name:"Orc", hp:250, maxhp:250, exp:450, str:20, def:12};
 var dragon = {name: "Dragon", hp:1000, maxhp:1000, exp:0, str:30, def:22};
 var dragonSpawned = false;
 
-function initializeValues(name, hp, str, def, exp) {
+function initializeValues(name, hp, str, def, exp, username) {
 	playerName = name;
 	playerMaxHP = playerHP = hp;
 	playerSTR = str;
@@ -29,6 +29,7 @@ function initializeValues(name, hp, str, def, exp) {
 	document.getElementById("playerSTR").value = playerSTR;
 	document.getElementById("playerDEF").value = playerDEF;
 	document.getElementById("playerEXP").value = playerEXP;
+	document.getElementById("username").value = username;
 
 	document.getElementById("slimeHP").value = slime.hp;
 	document.getElementById("rabbitHP").value = rabbit.hp;
@@ -37,6 +38,12 @@ function initializeValues(name, hp, str, def, exp) {
 	document.getElementById("goblinHP").value = goblin.hp;
 	document.getElementById("orcHP").value = orc.hp;
 	document.getElementById("dragonHP").value = dragon.hp;
+
+	addLine("As you walk into town, you are approached by an old man.");
+	addLine("He tells you of a forest to the south where many creatures roam carefree...");
+	addLine("...frolicking and playing in a peaceful utopia.");
+	addLine("As an adventurer, you cannot stand idly by and let this happen.");
+	addLine("Your murderous adventure begins now!");
 }
 
 function updateVals() {
@@ -147,7 +154,7 @@ function attackEnemy(enemy) {
 			playerLevel = checkLevel;
 			var stat = prompt("Level up! Pick a stat to increase!", "hp, def, or str");
     		if (stat == "hp") {
-        		playerMaxHP += 5;
+        		playerMaxHP += 10;
     		} else if (stat == "str") {
         		playerSTR += 1;
     		} else if (stat == "def") {

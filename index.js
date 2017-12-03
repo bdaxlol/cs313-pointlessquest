@@ -40,6 +40,28 @@ app.get('/loadData', function (request, response) {
   	});
 });
 
+app.get('/saveGame', function (request, response) {
+  var requestUrl = url.parse(request.url, true);
+  console.log("Query parameters: " + JSON.stringify(requestUrl.query));
+  var username = requestUrl.query.username;
+  var playerName = requestUrl.query.playerName;
+  var playerHP = requestUrl.query.playerHP;
+  var playerSTR = requestUrl.query.playerSTR;
+  var playerDEF = requestUrl.query.playerDEF;
+  var playerEXP = requestUrl.query.playerEXP;
+
+  pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+    client.query("UPDATE player SET exp_points = "+playerEXP+", max_hp = "+playerHP+", strength = "+playerSTR+", defense = "+playerDEF+" WHERE name = '"+playerName+"'", function(err, result) {
+      done();
+      if (err) {
+        console.error(err); response.send("Error " + err);
+      } else {
+        console.log("Update query success.");
+      }
+    });
+  });
+});
+
 app.get('/login', function (request, response) {
 	var requestUrl = url.parse(request.url, true);
 	console.log("Query parameters: " + JSON.stringify(requestUrl.query));
@@ -120,7 +142,7 @@ function fetchPlayerData(username, request, response) {
         console.error(err); response.send("Error " + err);
       } else {
         console.log("Got player data. Moving to game page.")
-        response.render('pages/game', {results: result.rows} );
+        response.render('pages/game', {results: result.rows, username: username} );
       }
       });
   });

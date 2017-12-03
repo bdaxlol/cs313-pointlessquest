@@ -11,9 +11,10 @@
     	var getStr = <%= results[0].strength %>;
     	var getDef = <%= results[0].defense %>;
     	var getExp = <%= results[0].exp_points %>;
+    	var getUsername = '<%= username %>';
     	console.log("Assigned stuff: " + getName);
     	//CHANGE BACK LATER
-    	initializeValues(getName, getHp, getStr, getDef, getExp);
+    	initializeValues(getName, getHp, getStr, getDef, getExp, getUsername);
 	}
 	</script>
 </head>
@@ -22,6 +23,7 @@
 	
 	<!-- Wrap all of this in a form so I can save with a GET request-->
 	<form action="/saveGame" method="get">
+	<input type="text" name="username" id="username" size=15 value="None" readonly style="visibility: hidden;">
 	<div>
 	<table class="inline">
 		<tr>
