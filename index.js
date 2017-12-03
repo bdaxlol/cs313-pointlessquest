@@ -16,7 +16,7 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 app.get('/', function(request, response) {
-  response.render('main.html');
+  response.render('main');
 });
 
 app.get('/createChar', function(request, response) {
