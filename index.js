@@ -56,7 +56,8 @@ app.get('/saveGame', function (request, response) {
       if (err) {
         console.error(err); response.send("Error " + err);
       } else {
-        console.log("Update query success.");
+        confirm("Successfully saved game. Redirecting to login.");
+        response.render('main.html');
       }
     });
   });
