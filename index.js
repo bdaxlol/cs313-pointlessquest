@@ -16,7 +16,7 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 app.get('/', function(request, response) {
-  response.render('pages/index');
+  response.render('main.html');
 });
 
 app.get('/createChar', function(request, response) {
@@ -56,8 +56,8 @@ app.get('/saveGame', function (request, response) {
       if (err) {
         console.error(err); response.send("Error " + err);
       } else {
-        confirm("Successfully saved game. Redirecting to login.");
-        response.render('main.html');
+        console.log("Successfully saved game. Redirecting to login.");
+        response.render('pages/saved');
       }
     });
   });
