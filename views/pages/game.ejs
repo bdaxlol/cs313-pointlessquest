@@ -21,7 +21,8 @@
 	
 	<!-- Wrap all of this in a form so I can save with a GET request-->
 	<form action="/saveGame" method="get">
-	<table>
+	<div>
+	<table class="inline">
 		<tr>
 			<th>Name</th>
 			<th>Level</th>
@@ -39,6 +40,8 @@
 			<td><input type="text" name="playerEXP" id="playerEXP" size=15 value=0 readonly></td>
 		</tr>
 	</table>
+	<input type="submit" value="Save & Quit" id="saveBtn" class="inline">
+	</div>
    
 	<br>
 	<div id="scrollDiv">
@@ -61,11 +64,13 @@
 				<td><button type="button" onclick="attackEnemy('goblin')" id="goblinButton"><img src="goblin.png" height="200" width="200"></button><input type="text" name="goblinHP" id="goblinHP" size=2 value=0 readonly></td>
 				<td><button type="button" onclick="attackEnemy('orc')" id="orcButton"><img src="orc.png" height="200" width="200"></button><input type="text" name="orcHP" id="orcHP" size=2 value=0 readonly></td>
 			</tr>
+		</table>
+		<table class="inline">
 			<tr id="dragon_row" style="display: none;">
 				<td><button type="button" onclick="attackEnemy('dragon')" id="dragonButton"><img src="dragon.jpg" height="400" width="500"></button><input type="text" name="dragonHP" id="dragonHP" size=2 value=0 readonly></td>
 			</tr>
 		</table>
-		<input type="submit" value="Save & Quit" id="saveBtn" class="inline">
+
 	</div>
 	</form>
 </body>
