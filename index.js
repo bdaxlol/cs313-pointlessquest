@@ -82,6 +82,7 @@ app.get('/login', function (request, response) {
       					fetchPlayerData(username, request, response);
       				} else {
       					console.log("Password does not match, show error");
+                response.render('pages/index');
       				}
       			} else {
       				console.log("Username doesn't exist, go create user.");
